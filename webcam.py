@@ -48,10 +48,27 @@ def write_data_in(lp, time_in):
     with open("database/data-in.txt", "a") as file:
         file.write(f"{lp} - {time_in}\n")
 
+# Delete data to `database/data-in.txt`
+def remove_lp_from_data_in(lp):
+    try:
+        # Open the "data-in.txt" file and read all lines
+        with open("database/data-in.txt", "r") as file:
+            lines = file.readlines()
+        
+        # Open "data-in.txt" again in write mode to overwrite the content
+        with open("database/data-in.txt", "w") as file:
+            for line in lines:
+                # Write all lines except the one containing the given license plate
+                if not line.startswith(lp):
+                    file.write(line)
+    except FileNotFoundError:
+        pass  # If the file doesn't exist, there's nothing to remove
+
 # Write to `database/data-out.txt`
 def write_data_out(lp, time_in, time_out, money):
     with open("database/data-out.txt", "a") as file:
         file.write(f"{lp} - {time_in} - {time_out} - ${money}\n")
+    remove_lp_from_data_in(lp)
 
 # Store the current time in a string format
 def get_current_time():
@@ -96,6 +113,7 @@ while True:
 
     # Check for Enter key press to handle license plate processing
     if cv2.waitKey(1) & 0xFF == 13:  # Enter key
+        data_in = read_data_in()
         for lp in list_read_plates:
             if lp not in data_in:
                 # If the license plate is not in database/data-in.txt, write it with the current time
