@@ -1,0 +1,11 @@
+opencv-python==4.9.0.80
+matplotlib
+numpy==1.21.6
+Pillow
+torch
+torchvision
+tqdm
+pyyaml
+requests
+pandas
+seaborn
