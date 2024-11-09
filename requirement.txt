@@ -1,11 +1,8 @@
-opencv-python==4.8.0.74  # required by roboflow
-certifi==2022.12.7  # required by roboflow
-idna==2.10  # required by roboflow
-ultralytics==8.0.100  # or a compatible version that doesn’t require numpy>=1.22.2
-numpy==1.21.6  # highest version compatible with Python 3.7
-torch==1.8.0  # required by torchaudio and compatible with your system
+opencv-python==4.9.0.80
 matplotlib
+numpy==1.21.6
 Pillow
+torch
 torchvision
 tqdm
 pyyaml
